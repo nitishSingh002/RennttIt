@@ -9,6 +9,8 @@ const listingSchema = new Schema({
     description: String,
     image: {
         type: String,
+       // filename: String,
+      //  url: String,
         default: "https://unsplash.com/photos/lone-tree-silhouetted-on-a-hill-at-sunset--Fr4DhM0ge8",
         set: (v) => v=== "" ? "https://unsplash.com/photos/lone-tree-silhouetted-on-a-hill-at-sunset--Fr4DhM0ge8": v,
     },
