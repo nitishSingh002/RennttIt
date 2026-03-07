@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listing Details</title>
+</head>
+<body>
+
+<h1>Listing Details</h1>
+
+<ul>
+    <li>Title: <%= listing.title %></li>
+    <li>Description: <%= listing.description %></li>
+    <li>Price: ₹ <%= listing.price.toLocaleString("en-IN") %></li>
+    <li>Location: <%= listing.location %></li>
+    <li>Country: <%= listing.country %></li>
+</ul>
+
+</body>
+</html>
