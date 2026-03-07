@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Listing</title>
+</head>
+<body>
+
+<h1>Create New Listing</h1>
+
+<form action="/listings" method="POST">
+
+    <label>Title</label>
+    <input type="text" name="listing[title]" required>
+    <br><br>
+
+    <label>Description</label>
+    <textarea name="listing[description]"></textarea>
+    <br><br>
+
+    <label>Price</label>
+    <input type="number" name="listing[price]">
+    <br><br>
+
+    <label>Location</label>
+    <input type="text" name="listing[location]">
+    <br><br>
+
+    <label>Country</label>
+    <input type="text" name="listing[country]">
+    <br><br>
+
+    <button type="submit">Create Listing</button>
+
+</form>
+
+</body>
+</html>

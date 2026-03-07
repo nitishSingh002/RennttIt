@@ -6,14 +6,22 @@
     <title>ALL LISTINGS</title>
 </head>
 <body>
-    <h3> All Listings</h3>
+
+    <h3>All Listings</h3>
+
+    <a href="/listings/new">
+        <button>Create New Listing</button>
+    </a>
+
     <ul>
         <% for(let listing of allListings) { %>
-        <li> <a href = "/listings/<%= listing._id %>">
-            <%= listing.title %>
-        </a></li>
-        <% } %>
-        
+        <li>
+            <a href="/listings/<%= listing._id %>">
+                <%= listing.title %>
+            </a>
+        </li>
+        <% } %> 
     </ul>
+
 </body>
 </html>
