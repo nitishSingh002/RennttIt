@@ -1,27 +1,23 @@
 <% layout("layouts/boilerplate") %>
 
-    <h3> All Listings </h3>
+<h3>All Listings</h3>
 
-   
-
-    <ul>
-        <% for(let listing of allListings) { %>
+<ul>
+    <% for(let listing of allListings) { %>
         <li>
             <a href="/listings/<%= listing._id %>">
                 <%= listing.title %>
             </a>
         </li>
-        <% } %> 
-    </ul>
-    <br>
-     <a href="/listings/new">
-        <button>Create New Listing</button>
-    </a>
-    <br>
-    <br>
+    <% } %>
+</ul>
+
+<br>
+
+<a href="/listings/new">
+    <button>Create New Listing</button>
+</a>
+<br>
+<br>
 
 
-
-
-</body>
-</html>

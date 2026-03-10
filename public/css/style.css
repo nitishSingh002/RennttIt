@@ -1,7 +1,13 @@
 body{
-    background-color: red;
+    background-color: rgb(191, 213, 254);
+}
+
+button{
+    color: rgb(247, 245, 249);
+     background-color: rgb(0, 255, 4);
 }
 
 h3{
-    color: #fe424d;
+    color: brown;
+    align-content: center;
 }
