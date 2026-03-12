@@ -2,22 +2,31 @@
 
 <h3>All Listings</h3>
 
-<ul>
-    <% for(let listing of allListings) { %>
-        <li>
-            <a href="/listings/<%= listing._id %>">
-                <%= listing.title %>
-            </a>
-        </li>
-    <% } %>
-</ul>
+<div class="row">
 
-<br>
+<% for(let listing of allListings){ %>
 
-<!-- <a href="/listings/new">
-    <button>Create New Listing</button> -->
-</a>
-<br>
-<br>
+<div class="col-lg-4 col-md-6 col-sm-12 mb-4">
 
+<div class="card listing-card">
 
+<img 
+src="<%= listing.image.url %>" 
+class="card-img-top listing-img">
+
+<div class="card-body">
+<p class="card-text">
+<b><%= listing.title %></b> <br>
+₹ <%= listing.price %> / night
+</p>
+</div>
+
+<a href="/listings/<%= listing._id %>" class="stretched-link"></a>
+
+</div>
+
+</div>
+
+<% } %>
+
+</div>

@@ -14,6 +14,7 @@ main()
 
  async function main(){
     await mongoose.connect(MONGO_URL);
+     initDB();
  }
 
  const initDB = async () =>{
@@ -22,5 +23,5 @@ main()
     console.log("Data was initialised");
  };
 
- initDB();
+
 

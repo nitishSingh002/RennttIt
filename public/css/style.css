@@ -75,3 +75,51 @@ body{
 .container{
     flex:0.6;
 }
+
+
+
+
+/* CARD STYLING */
+
+.listing-card{
+    border: none !important;
+    border-radius: 1rem !important;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+/* IMAGE STYLING */
+
+.listing-img{
+    height: 20rem;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* CARD BODY */
+
+.card-body{
+    padding: 0.8rem;
+}
+
+.card-text{
+    font-size: 0.95rem;
+}
+
+/* HOVER EFFECT */
+
+.listing-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* IMAGE ZOOM EFFECT */
+
+.listing-card:hover .listing-img{
+    transform: scale(1.05);
+}
+.listing-link{
+    text-decoration: none;
+    color: black;
+}
