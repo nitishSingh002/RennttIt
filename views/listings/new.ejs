@@ -1,32 +1,47 @@
-<% layout("layouts/boilerplate") %>
+<% layout("/layouts/boilerplate") %>
 
-<h1>Create New Listing</h1>
+<h3 class="add-heading">Create New Listing</h3>
+
+<div class="row justify-content-center">
+
+<div class="col-md-8 col-lg-6">
 
 <form action="/listings" method="POST">
 
-    <label>Title</label>
-    <input type="text" name="listing[title]" required>
-    <br><br>
+<div class="mb-3">
+<label class="form-label">Title</label>
+<input type="text" name="listing[title]" class="form-control" placeholder="Enter listing title">
+</div>
 
-    <label>Description</label>
-    <textarea name="listing[description]"></textarea>
-    <br><br>
+<div class="mb-3">
+<label class="form-label">Description</label>
+<textarea name="listing[description]" class="form-control"></textarea>
+</div>
 
-    <label>Price</label>
-    <input type="number" name="listing[price]">
-    <br><br>
+<div class="mb-3">
+<label class="form-label">Image URL</label>
+<input type="text" name="listing[image]" class="form-control">
+</div>
 
-    <label>Location</label>
-    <input type="text" name="listing[location]">
-    <br><br>
+<div class ="row">
+<div class="col-md-6 mb-3">
+<label class="form-label">Price</label>
+<input type="number" name="listing[price]" class="form-control">
+</div>
 
-    <label>Country</label>
-    <input type="text" name="listing[country]">
-    <br><br>
+<div class="col-md-6 mb-3">
+<label class="form-label">Country</label>
+<input type="text" name="listing[country]" class="form-control">
+</div>
+</div>
 
-    <button type="submit">Create Listing</button>
+<div class="mb-3">
+<label class="form-label">Location</label>
+<input type="text" name="listing[location]" class="form-control">
+</div>
+<button class="btn btn-dark add-btn">Add Listing</button>
 
 </form>
 
-</body>
-</html>
+</div>
+</div>

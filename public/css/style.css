@@ -123,3 +123,72 @@ body{
     text-decoration: none;
     color: black;
 }
+
+/* NEW LISTING FORM */
+
+.add-heading{
+    text-align:center;
+    margin-bottom:2rem;
+    font-weight:600;
+}
+
+/* form container */
+
+form{
+    background: #e6f4ff;
+    padding:2rem;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Form labels */
+
+.form-label{
+    font-weight: 600;
+    color: #333;
+    letter-spacing: 0.5px;
+}
+
+/* input styling */
+
+.form-control{
+    border-radius:10px;
+}
+
+/* submit button */
+
+.add-btn{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.add-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* Decorative heading */
+
+.add-heading{
+    font-family: 'pacifico', cursive;
+    text-align:center;
+    font-weight:700;
+    font-size:2rem;
+    margin-bottom:2rem;
+    position:relative;
+    letter-spacing:1px;
+}
+
+/* underline decoration */
+
+.add-heading::after{
+    content:"";
+    width:80px;
+    height:4px;
+    background:#ff385c;
+    display:block;
+    margin:10px auto 0;
+    border-radius:5px;
+}
