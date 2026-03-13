@@ -1,30 +1,77 @@
-<% layout("layouts/boilerplate") %>
+<% layout("/layouts/boilerplate") %>
 
+<h3 class="add-heading">Edit Listing</h3>
 
-<h1>Edit Listing</h1>
+<div class="row justify-content-center">
+<div class="col-md-8 col-lg-6">
 
-<form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
+<form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
 
-    <label>Title</label>
-    <input type="text" name="listing[title]" value="<%= listing.title %>">
-    <br><br>
+<div class="mb-3">
+<label class="form-label">Title</label>
+<input 
+type="text"
+class="form-control"
+name="listing[title]"
+value="<%= listing.title %>"
+>
+</div>
 
-    <label>Description</label>
-    <textarea name="listing[description]"><%= listing.description %></textarea>
-    <br><br>
+<div class="mb-3">
+<label class="form-label">Description</label>
+<textarea 
+class="form-control"
+name="listing[description]"
+><%= listing.description %></textarea>
+</div>
 
-    <label>Price</label>
-    <input type="number" name="listing[price]" value="<%= listing.price %>">
-    <br><br>
+<div class="mb-3">
+<label class="form-label">Image URL</label>
+<input 
+type="text"
+class="form-control"
+name="listing[image][url]"
+value="<%= listing.image.url %>"
+>
+</div>
 
-    <label>Location</label>
-    <input type="text" name="listing[location]" value="<%= listing.location %>">
-    <br><br>
+<div class="mb-3">
+<label class="form-label">Location</label>
+<input 
+type="text"
+class="form-control"
+name="listing[location]"
+value="<%= listing.location %>"
+>
+</div>
 
-    <label>Country</label>
-    <input type="text" name="listing[country]" value="<%= listing.country %>">
-    <br><br>
+<div class="row">
 
-    <button type="submit">Update Listing</button>
+<div class="col-md-6 mb-3">
+<label class="form-label">Price</label>
+<input 
+type="number"
+class="form-control"
+name="listing[price]"
+value="<%= listing.price %>"
+>
+</div>
+
+<div class="col-md-6 mb-3">
+<label class="form-label">Country</label>
+<input 
+type="text"
+class="form-control"
+name="listing[country]"
+value="<%= listing.country %>"
+>
+</div>
+
+</div>
+
+<button class="btn btn-dark add-btn">Update Listing</button>
 
 </form>
+
+</div>
+</div>

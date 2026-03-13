@@ -69,11 +69,21 @@ app.get("/listings/:id/edit", async (req,res) => {
 });
 
 //update route
-app.put("/listings/:id", async (req,res) => {
+app.put("/listings/:id", async (req, res) => {
     let { id } = req.params;
-    await Listing.findByIdAndUpdate(id, {...req.body.listing});
+
+    let updatedData = req.body.listing;
+
+    // prevent empty image URL from deleting old image
+    if(updatedData.image === ""){
+        delete updatedData.image;
+    }
+
+    await Listing.findByIdAndUpdate(id, updatedData);
+
     res.redirect(`/listings/${id}`);
 });
+
 
 //delete route
 app.delete("/listings/:id", async (req,res)=>{

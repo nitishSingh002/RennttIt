@@ -6,15 +6,31 @@ const listingSchema = new Schema({
         type: String,
         required: true,
     },
-    description: String,
+    description: {
+        type: String,
+        required: true,
+    },
     image: {
-        url: String,
+        url: {
+            type: String,
+            default: "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+        },
         filename: String
     },
-    price: Number,
-    location: String,
-    country: String,
+    price: {
+        type: Number,
+        required: true,
+    },
+    location: {
+        type: String,
+        required: true,
+    },
+    country: {
+        type: String,
+        required: true,
+    },
 });
+
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;

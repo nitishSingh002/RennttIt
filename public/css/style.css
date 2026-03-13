@@ -192,3 +192,64 @@ form{
     margin:10px auto 0;
     border-radius:5px;
 }
+
+
+/* SHOW PAGE */
+
+.show-title{
+    text-align:center;
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:1rem;
+}
+
+/* card */
+
+.show-card{
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* image */
+
+.show-img{
+    height:400px;
+    object-fit:cover;
+}
+
+/* card body */
+
+.show-card .card-body{
+    padding:1.5rem;
+    font-size:1.05rem;
+}
+
+/* buttons */
+
+.show-btns{
+    display:flex;
+    gap:10px;
+    margin-top:20px ;
+    align-items:center;
+}
+
+
+.edit-btn,
+.delete-btn{
+    transition:0.25s;
+}
+
+.edit-btn:hover,
+.delete-btn:hover{
+    transform:translateY(-2px);
+}
+
+.edit-btn,
+.delete-btn{
+    padding:6px 14px;
+    font-size:0.9rem;
+    border-radius:6px;
+    width:auto;
+}
