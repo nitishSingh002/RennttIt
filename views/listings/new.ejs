@@ -6,39 +6,61 @@
 
 <div class="col-md-8 col-lg-6">
 
-<form action="/listings" method="POST">
+<form action="/listings" method="POST" class="needs-validation" novalidate>
 
+<!-- Title -->
 <div class="mb-3">
 <label class="form-label">Title</label>
-<input type="text" name="listing[title]" class="form-control" placeholder="Enter listing title">
+<input type="text" name="listing[title]" class="form-control" placeholder="Enter listing title" required>
+<div class="invalid-feedback">
+    Please enter a title.
+</div>
 </div>
 
+<!-- Description -->
 <div class="mb-3">
 <label class="form-label">Description</label>
-<textarea name="listing[description]" class="form-control"></textarea>
+<textarea name="listing[description]" class="form-control" required></textarea>
+<div class="invalid-feedback">
+    Please enter a description.
+</div>
 </div>
 
+<!-- Image -->
 <div class="mb-3">
 <label class="form-label">Image URL</label>
-<input type="text" name="listing[image]" class="form-control">
+<input type="text" name="listing[image][url]" class="form-control" placeholder="Enter image URL">
 </div>
 
-<div class ="row">
+<!-- Price + Country -->
+<div class="row">
 <div class="col-md-6 mb-3">
 <label class="form-label">Price</label>
-<input type="number" name="listing[price]" class="form-control">
+<input type="number" name="listing[price]" class="form-control" required>
+<div class="invalid-feedback">
+    Please enter a valid price.
+</div>
 </div>
 
 <div class="col-md-6 mb-3">
 <label class="form-label">Country</label>
-<input type="text" name="listing[country]" class="form-control">
+<input type="text" name="listing[country]" class="form-control" required>
+<div class="invalid-feedback">
+    Please enter country.
+</div>
 </div>
 </div>
 
+<!-- Location -->
 <div class="mb-3">
 <label class="form-label">Location</label>
-<input type="text" name="listing[location]" class="form-control">
+<input type="text" name="listing[location]" class="form-control" required>
+<div class="invalid-feedback">
+    Please enter location.
 </div>
+</div>
+
+<!-- Button -->
 <button class="btn btn-dark add-btn">Add Listing</button>
 
 </form>
