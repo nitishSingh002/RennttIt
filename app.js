@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
 const wrapAsync = require("./utils/wrapAsync");
+const { listingSchema } = require("./utils/validationSchema");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
@@ -31,6 +32,16 @@ main()
  app.use(methodOverride("_method"));
  app.use(express.static(path.join(__dirname, "public")));
 
+ const validateListing = (req, res, next) => {
+    let { error } = listingSchema.validate(req.body);
+
+    if (error) {
+        let errMsg = error.details.map(el => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    } else {
+        next();
+    }
+};
 
 
 app.get("/", (req,res)=> {
@@ -49,11 +60,14 @@ app.get("/listings/new", (req, res) => {
 });
 
 //saves data
-app.post("/listings", wrapAsync(async (req, res) => {
-    const newListing = new Listing(req.body.listing);
-    await newListing.save();
-    res.redirect("/listings");
-}));
+app.post("/listings",
+    validateListing,
+    wrapAsync(async (req, res) => {
+        const newListing = new Listing(req.body.listing);
+        await newListing.save();
+        res.redirect("/listings");
+    })
+);
 
 //show route
 app.get("/listings/:id", wrapAsync(async (req,res,next) => {
@@ -83,20 +97,21 @@ const listing = await Listing.findById(id);
 }));
 
 //update route
-app.put("/listings/:id", wrapAsync(async (req, res) => {
-    let { id } = req.params;
+app.put("/listings/:id",
+    validateListing,
+    wrapAsync(async (req, res) => {
+        let { id } = req.params;
 
-    let updatedData = req.body.listing;
+        let updatedData = req.body.listing;
 
-    // prevent empty image URL from deleting old image
-    if(updatedData.image === ""){
-        delete updatedData.image;
-    }
+        if(updatedData.image === ""){
+            delete updatedData.image;
+        }
 
-    await Listing.findByIdAndUpdate(id, updatedData);
-
-    res.redirect(`/listings/${id}`);
-}));
+        await Listing.findByIdAndUpdate(id, updatedData);
+        res.redirect(`/listings/${id}`);
+    })
+);
 
 
 //delete route
