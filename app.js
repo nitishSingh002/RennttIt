@@ -106,11 +106,6 @@ app.delete("/listings/:id", wrapAsync(async (req,res)=>{
     res.redirect("/listings");
 }));
 
-
-app.listen(8080, () =>{
-    console.log("server is listening");
-});
-
 app.use((req, res, next) => {
     next(new ExpressError(404, "Page Not Found"));
 });
@@ -120,5 +115,12 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong!" } = err;
-    res.status(statusCode).send(message);
+    res.status(statusCode).render("error.ejs", { err});
 });
+
+
+
+app.listen(8080, () =>{
+    console.log("server is listening");
+});
+
