@@ -104,8 +104,8 @@ app.put("/listings/:id",
 
         let updatedData = req.body.listing;
 
-        if(updatedData.image === ""){
-            delete updatedData.image;
+      if(updatedData.image.url === ""){
+        delete updatedData.image;
         }
 
         await Listing.findByIdAndUpdate(id, updatedData);
