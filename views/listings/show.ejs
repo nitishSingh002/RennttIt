@@ -43,6 +43,52 @@ class="card-img-top show-img">
 </form>
 
 </div>
+<hr>
+<h4>Add Review</h4>
+
+<form action="/listings/<%= listing._id %>/reviews" method="POST">
+
+    <div class="mb-3">
+        <label class="form-label">Rating</label>
+        <input 
+            type="number" 
+            name="review[rating]" 
+            min="1" 
+            max="5" 
+            class="form-control" 
+            required
+        >
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Comment</label>
+        <textarea 
+            name="review[comment]" 
+            class="form-control" 
+            required
+        ></textarea>
+    </div>
+
+    <button class="btn btn-dark">Submit Review</button>
+
+</form>
+<hr>
+
+<h4>All Reviews</h4>
+
+<% if(listing.reviews.length === 0) { %>
+    <p>No reviews yet.</p>
+<% } %>
+
+<% for(let review of listing.reviews) { %>
+    <div class="card mb-2 p-2">
+        <p><strong>Rating:</strong> <%= review.rating %></p>
+        <p><%= review.comment %></p>
+    </div>
+<% } %>
+
 
 </div>
 </div>
+
+
