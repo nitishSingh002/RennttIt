@@ -10,6 +10,7 @@ const wrapAsync = require("./utils/wrapAsync");
 const { listingSchema, reviewSchema } = require("./utils/validationSchema");
 const Review = require("./models/review");
 const listingRoutes = require("./routes/listings");
+const reviewRoutes = require("./routes/reviews");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
@@ -56,42 +57,11 @@ const validateReview = (req, res, next) => {
     }
 };
 app.use("/listings", listingRoutes);
+app.use("/listings/:id/reviews", reviewRoutes);
 
 
 
-//review route
-app.post("/listings/:id/reviews",
-    validateReview,
-    wrapAsync(async (req, res) => {
-        let listing = await Listing.findById(req.params.id);
 
-        let newReview = new Review(req.body.review);
-
-        listing.reviews.push(newReview);
-
-        await newReview.save();
-        await listing.save();
-
-        res.redirect(`/listings/${listing._id}`);
-    })
-);
-
-//Delete review route
-app.delete("/listings/:id/reviews/:reviewId",
-    wrapAsync(async (req, res) => {
-        let { id, reviewId } = req.params;
-
-        // remove review reference from listing
-        await Listing.findByIdAndUpdate(id, {
-            $pull: { reviews: reviewId }
-        });
-
-        // delete review from DB
-        await Review.findByIdAndDelete(reviewId);
-
-        res.redirect(`/listings/${id}`);
-    })
-);
 
 app.use((req, res, next) => {
     next(new ExpressError(404, "Page Not Found"));
