@@ -9,6 +9,7 @@ const ExpressError = require("./utils/ExpressError");
 const wrapAsync = require("./utils/wrapAsync");
 const { listingSchema, reviewSchema } = require("./utils/validationSchema");
 const Review = require("./models/review");
+const listingRoutes = require("./routes/listings");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
@@ -54,84 +55,9 @@ const validateReview = (req, res, next) => {
         next();
     }
 };
+app.use("/listings", listingRoutes);
 
 
-app.get("/", (req,res)=> {
-    res.send("Hi");
-});
-
-//index route
-app.get("/listings", wrapAsync(async (req,res)=>{
-    const allListings = await Listing.find({});
-    res.render("listings/index", {allListings});
-}));
-
-//new route
-app.get("/listings/new", (req, res) => {
-    res.render("listings/new");
-});
-
-//saves data
-app.post("/listings",
-    validateListing,
-    wrapAsync(async (req, res) => {
-        const newListing = new Listing(req.body.listing);
-        await newListing.save();
-        res.redirect("/listings");
-    })
-);
-
-//show route
-app.get("/listings/:id", wrapAsync(async (req,res,next) => {
-    let { id } = req.params;
-    if(!mongoose.Types.ObjectId.isValid(id)){
-    throw new ExpressError(400, "Invalid ID");
-}
-
-const listing = await Listing.findById(id).populate("reviews");
-
-    if(!listing){
-        throw new ExpressError(404, "Listing not found");
-    }
-
-    res.render("listings/show", { listing });
-}));
-
-//Edit route
-app.get("/listings/:id/edit", wrapAsync(async (req,res) => {
-    let { id } = req.params;
-    if(!mongoose.Types.ObjectId.isValid(id)){
-    throw new ExpressError(400, "Invalid ID");
-}
-
-const listing = await Listing.findById(id);
-    res.render("listings/edit", { listing });
-}));
-
-//update route
-app.put("/listings/:id",
-    validateListing,
-    wrapAsync(async (req, res) => {
-        let { id } = req.params;
-
-        let updatedData = req.body.listing;
-
-      if(updatedData.image.url === ""){
-        delete updatedData.image;
-        }
-
-        await Listing.findByIdAndUpdate(id, updatedData);
-        res.redirect(`/listings/${id}`);
-    })
-);
-
-
-//delete route
-app.delete("/listings/:id", wrapAsync(async (req,res)=>{
-    let { id } = req.params;
-    await Listing.findByIdAndDelete(id);
-    res.redirect("/listings");
-}));
 
 //review route
 app.post("/listings/:id/reviews",
