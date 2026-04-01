@@ -11,6 +11,8 @@ const { listingSchema, reviewSchema } = require("./utils/validationSchema");
 const Review = require("./models/review");
 const listingRoutes = require("./routes/listings");
 const reviewRoutes = require("./routes/reviews");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
@@ -56,6 +58,28 @@ const validateReview = (req, res, next) => {
         next();
     }
 };
+
+
+const sessionOptions = {
+    secret: "mysupersecretcode",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+    }
+};
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+});
+
 app.use("/listings", listingRoutes);
 app.use("/listings/:id/reviews", reviewRoutes);
 
@@ -72,7 +96,8 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong!" } = err;
-    res.status(statusCode).render("error.ejs", { err});
+    req.flash("error", message);
+    res.redirect("/listings");
 });
 
 
