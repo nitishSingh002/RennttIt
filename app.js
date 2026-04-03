@@ -13,6 +13,11 @@ const listingRoutes = require("./routes/listings");
 const reviewRoutes = require("./routes/reviews");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user");
+const userRoutes = require("./routes/users");
+
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
@@ -36,6 +41,8 @@ main()
  app.use(express.urlencoded({extended: true}));
  app.use(methodOverride("_method"));
  app.use(express.static(path.join(__dirname, "public")));
+
+
 
  const validateListing = (req, res, next) => {
     let { error } = listingSchema.validate(req.body);
@@ -80,6 +87,15 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+ app.use("/", userRoutes);
 app.use("/listings", listingRoutes);
 app.use("/listings/:id/reviews", reviewRoutes);
 
