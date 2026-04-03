@@ -81,14 +81,17 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;   // 🔥 THIS LINE FIXES IT
     next();
 });
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 passport.use(new LocalStrategy(User.authenticate()));
 

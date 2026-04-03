@@ -34,13 +34,18 @@ class="card-img-top show-img">
 
 <div class="show-btns">
 
-<a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a>
+<% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
 
-<form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+    <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a>
 
-<button class="btn btn-danger">Delete</button>
+    <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+        <button class="btn btn-danger">Delete</button>
+    </form>
 
-</form>
+<% } %>
+
+
+
 
 </div>
 <hr>
