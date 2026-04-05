@@ -106,14 +106,18 @@ class="card-img-top show-img">
                 <p class="card-text"><%= review.comment %></p>
 
                 <!-- 🗑 DELETE BUTTON (ADD THIS) -->
-                <form 
-                    action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" 
-                    method="POST"
-                >
-                    <button class="btn btn-sm btn-outline-danger mt-2">
-                        🗑 Delete
-                    </button>
-                </form>
+                <% if(currUser && review.author && currUser._id.toString() === review.author._id.toString()) { %>
+
+<form 
+    action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" 
+    method="POST"
+>
+    <button class="btn btn-sm btn-outline-danger mt-2">
+        🗑 Delete
+    </button>
+</form>
+
+<% } %>
 
             </div>
         </div>
