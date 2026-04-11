@@ -1,22 +1,47 @@
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-solid fa-compass"></i></a>
-    <button class="navbar-toggler" 
-    type="button"
-    data-bs-toggle="collapse"
-     data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-       aria-expanded="false" 
-       aria-label="Toggle navigation">
+    
+    <a class="navbar-brand" href="/">
+      <i class="fa-solid fa-compass"></i>
+    </a>
+
+    <button 
+      class="navbar-toggler" 
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+      <!-- LEFT SIDE -->
       <div class="navbar-nav">
-        <a class="nav-link active"  href="/">Home</a>
+        <a class="nav-link active" href="/">Home</a>
         <a class="nav-link" href="/listings">All Listings</a>
         <a class="nav-link" href="/listings/new">New Listings</a>
-        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
       </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="navbar-nav ms-auto">
+
+        <% if(!currUser) { %>
+
+          <a class="btn btn-outline-dark ms-2" href="/login">Login</a>
+          <a class="btn btn-dark ms-2" href="/signup">Signup</a>
+     
+
+        <% } else { %>
+
+          <span class="nav-link">Hello, <%= currUser.username %></span>
+
+          <a class="btn btn-danger ms-2" href="/logout">Logout</a>
+
+        <% } %>
+
+      </div>
+
     </div>
   </div>
 </nav>
