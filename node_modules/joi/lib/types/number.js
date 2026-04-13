@@ -269,6 +269,13 @@ module.exports = Any.extend({
                 }
 
                 return helpers.error('number.port');
+            },
+            jsonSchema(rule, res) {
+
+                res.type = 'integer';
+                res.minimum = 0;
+                res.maximum = 65535;
+                return res;
             }
         },
 
@@ -318,7 +325,13 @@ module.exports = Any.extend({
             },
             jsonSchema(rule, res) {
 
-                res['x-constraint'] = { ...res['x-constraint'], sign: rule.args.sign };
+                if (rule.args.sign === 'positive') {
+                    res.exclusiveMinimum = 0;
+                }
+                else {
+                    res.exclusiveMaximum = 0;
+                }
+
                 return res;
             }
         },
