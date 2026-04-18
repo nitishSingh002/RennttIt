@@ -15,7 +15,9 @@ class="card-img-top show-img">
 <div class="card-body">
 
 <p class="text-muted small">
-    Hosted by <strong><%= listing.owner.username %></strong>
+    Hosted by <strong>
+<%= listing.owner ? listing.owner.username : "Unknown" %>
+</strong>
 </p>
 
 <p class="card-text">

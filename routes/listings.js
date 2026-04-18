@@ -7,7 +7,9 @@ const wrapAsync = require("../utils/wrapAsync");
 const { listingSchema } = require("../utils/validationSchema");
 const { isOwner, isLoggedIn } = require("../middleware");
 const listingController = require("../controllers/listings");
-
+const multer = require("multer");
+const { storage } = require("../cloudConfig");
+const upload = multer({ storage });
 // validation middleware
 const validateListing = (req, res, next) => {
     let { error } = listingSchema.validate(req.body);
@@ -24,7 +26,12 @@ router.get("/", wrapAsync(listingController.index));
 
 router.get("/new", listingController.renderNewForm);
 
-router.post("/", isLoggedIn, validateListing, wrapAsync(listingController.createListing));
+router.post("/",
+    isLoggedIn,
+    upload.single("listing[image]"),
+    validateListing,
+    wrapAsync(listingController.createListing)
+);
 
 router.get("/:id", wrapAsync(listingController.showListing));
 

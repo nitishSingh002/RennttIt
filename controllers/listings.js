@@ -1,6 +1,7 @@
 const ExpressError = require("../utils/ExpressError");
 const Listing = require("../models/listing");
 
+
 // INDEX
 module.exports.index = async (req, res) => {
     const allListings = await Listing.find({});
@@ -29,6 +30,21 @@ module.exports.showListing = async (req, res) => {
 module.exports.createListing = async (req, res) => {
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
+
+     // 👇 Cloudinary image
+      if (req.file) {
+        newListing.image = {
+            url: req.file.path,
+            filename: req.file.filename
+        };
+    } else {
+        // fallback (optional)
+        newListing.image = {
+            url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+            filename: "default"
+        };
+    }
+
 
     await newListing.save();
     req.flash("success", "New listing created!");
