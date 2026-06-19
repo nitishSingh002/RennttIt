@@ -1,3 +1,38 @@
+.filters{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+}
+
+.filter{
+    text-align: center;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.filter:hover{
+    opacity: 1;
+}
+
+.filter i{
+    font-size: 1.3rem;
+}
+
+.filter p{
+    font-size: 0.8rem;
+}
+
+.search-form{
+    width: 40%;
+}
+
+.search-input{
+    border-radius: 25px;
+}
+
 button{
     color: rgb(247, 245, 245);
      background-color: rgb(0, 250, 4);

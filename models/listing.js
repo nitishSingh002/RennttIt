@@ -39,7 +39,22 @@ const listingSchema = new Schema({
     owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
-    }
+    },
+    category: {
+    type: String,
+    enum: [
+        "Trending",
+        "Rooms",
+        "Mountains",
+        "Castles",
+        "Camping",
+        "Farms",
+        "Arctic",
+        "Beach",
+        "Luxury"
+    ],
+    default: "Trending"
+},
 });
 
 listingSchema.post("findOneAndDelete", async (listing) => {

@@ -1,5 +1,58 @@
 <% layout("layouts/boilerplate") %>
 
+
+
+<div class="filters">
+
+    <div class="filter">
+        <i class="fa-solid fa-fire"></i>
+        <p>Trending</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-bed"></i>
+        <p>Rooms</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-mountain"></i>
+        <p>Mountains</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-chess-rook"></i>
+        <p>Castles</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-campground"></i>
+        <p>Camping</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-tractor"></i>
+        <p>Farms</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-regular fa-snowflake"></i>
+        <p>Arctic</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-umbrella-beach"></i>
+        <p>Beach</p>
+    </div>
+
+    <div class="filter">
+        <i class="fa-solid fa-gem"></i>
+        <p>Luxury</p>
+    </div>
+
+</div>
+<% if(allListings.length === 0){ %>
+    <h4>No listings found.</h4>
+<% } %>
 <h3>All Listings</h3>
 
 <div class="row">
