@@ -1,7 +1,7 @@
 .filters{
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 3rem;
     overflow-x: auto;
     padding: 1rem 0;
     margin-bottom: 1rem;
