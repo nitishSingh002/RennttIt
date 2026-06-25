@@ -44,7 +44,9 @@ main()
  app.use(methodOverride("_method"));
  app.use(express.static(path.join(__dirname, "public")));
 
-
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 
  const validateListing = (req, res, next) => {
     let { error } = listingSchema.validate(req.body);
