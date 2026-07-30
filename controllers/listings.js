@@ -5,24 +5,25 @@ const Listing = require("../models/listing");
 // INDEX
 module.exports.index = async (req, res) => {
 
-    let search = req.query.search;
+    let filter = {};
 
-    let allListings;
-
-    if (search) {
-        allListings = await Listing.find({
-            $or: [
-                { title: { $regex: search, $options: "i" } },
-                { location: { $regex: search, $options: "i" } },
-                { country: { $regex: search, $options: "i" } }
-            ]
-        });
-    } else {
-        allListings = await Listing.find({});
+    if (req.query.category) {
+        filter.category = req.query.category;
     }
 
-    res.render("listings/index", { allListings });
+    console.log("Category:", req.query.category);
+    console.log("Filter:", filter);
+
+    const allListings = await Listing.find(filter);
+
+    console.log("Listings found:", allListings.length);
+
+    res.render("listings/index", {
+        allListings,
+        selectedCategory: req.query.category
+    });
 };
+
 // SHOW
 module.exports.showListing = async (req, res) => {
     let { id } = req.params;

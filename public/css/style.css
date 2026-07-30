@@ -313,3 +313,36 @@ form{
 .star-rating label:hover ~ label {
   color: #ffc107;
 }
+
+.filters{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    overflow-x:auto;
+    margin:1rem 0 2rem;
+    padding-bottom:10px;
+}
+
+.filter{
+    text-decoration:none;
+    color:#555;
+    text-align:center;
+    min-width:80px;
+    opacity:0.7;
+    transition:0.2s;
+}
+
+.filter i{
+    font-size:1.3rem;
+}
+
+.filter:hover{
+    opacity:1;
+    color:#fe424d;
+}
+
+.active-filter{
+    opacity:1;
+    color:#fe424d;
+    border-bottom:2px solid #fe424d;
+}

@@ -1,58 +1,63 @@
 <% layout("layouts/boilerplate") %>
 
-
-
 <div class="filters">
 
-    <div class="filter">
+    <a href="/listings" class="filter <%= !selectedCategory ? 'active-filter' : '' %>">
+        <i class="fa-solid fa-border-all"></i>
+        <p>All</p>
+    </a>
+
+    <a href="/listings?category=Trending" class="filter <%= selectedCategory === 'Trending' ? 'active-filter' : '' %>">
         <i class="fa-solid fa-fire"></i>
         <p>Trending</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=Rooms" class="filter <%= selectedCategory === 'Rooms' ? 'active-filter' : '' %>">
         <i class="fa-solid fa-bed"></i>
         <p>Rooms</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=Mountains" class="filter <%= selectedCategory === 'Mountains' ? 'active-filter' : '' %>">
         <i class="fa-solid fa-mountain"></i>
         <p>Mountains</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=Castles" class="filter <%= selectedCategory === 'Castles' ? 'active-filter' : '' %>">
         <i class="fa-solid fa-chess-rook"></i>
         <p>Castles</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=Camping" class="filter <%= selectedCategory === 'Camping' ? 'active-filter' : '' %>">
         <i class="fa-solid fa-campground"></i>
         <p>Camping</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=Farms" class="filter <%= selectedCategory === 'Farms' ? 'active-filter' : '' %>">
         <i class="fa-solid fa-tractor"></i>
         <p>Farms</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=Arctic" class="filter <%= selectedCategory === 'Arctic' ? 'active-filter' : '' %>">
         <i class="fa-regular fa-snowflake"></i>
         <p>Arctic</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=Beach" class="filter <%= selectedCategory === 'Beach' ? 'active-filter' : '' %>">
         <i class="fa-solid fa-umbrella-beach"></i>
         <p>Beach</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=Luxury" class="filter <%= selectedCategory === 'Luxury' ? 'active-filter' : '' %>">
         <i class="fa-solid fa-gem"></i>
         <p>Luxury</p>
-    </div>
+    </a>
 
 </div>
+
 <% if(allListings.length === 0){ %>
     <h4>No listings found.</h4>
 <% } %>
+
 <h3>All Listings</h3>
 
 <div class="row">
@@ -61,22 +66,22 @@
 
 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
 
-<div class="card listing-card">
+    <div class="card listing-card">
 
-<img 
-src="<%= listing.image.url %>" 
-class="card-img-top listing-img">
+        <img
+        src="<%= listing.image.url %>"
+        class="card-img-top listing-img">
 
-<div class="card-body">
-<p class="card-text">
-<b><%= listing.title %></b> <br>
-₹ <%= listing.price %> / night
-</p>
-</div>
+        <div class="card-body">
+            <p class="card-text">
+                <b><%= listing.title %></b><br>
+                ₹ <%= listing.price %> / night
+            </p>
+        </div>
 
-<a href="/listings/<%= listing._id %>" class="stretched-link"></a>
+        <a href="/listings/<%= listing._id %>" class="stretched-link"></a>
 
-</div>
+    </div>
 
 </div>
 
